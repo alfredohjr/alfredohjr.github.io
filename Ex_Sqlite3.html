@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>index</title>
+<title>Ex_Sqlite3</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11749,17 +11749,1010 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Indice-de-assuntos">Indice de assuntos<a class="anchor-link" href="#Indice-de-assuntos">&#182;</a></h1><h2 id="Links-internos">Links internos<a class="anchor-link" href="#Links-internos">&#182;</a></h2><ul>
-<li>Meu primeiro contato com jupyter notebook, matplotlib e pandas <a href="NumeroUmSQL.html">aqui</a></li>
-<li>Um exemplo com Sqlite3, matplotlib e pandas <a href="Ex_Sqlite3.html">aqui</a></li>
-</ul>
-<h2 id="Links-externos">Links externos<a class="anchor-link" href="#Links-externos">&#182;</a></h2><ul>
-<li>Para aprender a hospedar seus sites em github <a href="https://pages.github.com/">aqui</a> (Ingles)</li>
-<li>Markdown(Aprenda a usar isso o mais rapido possivel!!!) <a href="https://daringfireball.net/projects/markdown/syntax">aqui</a> (Ingles)</li>
-</ul>
+<h1 id="Trabalhando-com-SQLite,-Pandas-e-Matplotlib">Trabalhando com SQLite, Pandas e Matplotlib<a class="anchor-link" href="#Trabalhando-com-SQLite,-Pandas-e-Matplotlib">&#182;</a></h1><p>Alguns exemplos com graficos e tudo mais...</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;NumeroUm.db&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;create table CADASTRO(ID,NOME,NASCIMENTO,SALARIO)&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x7f74e29b6f10&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">Sql_1</span> <span class="o">=</span> <span class="s">&#39;select * from CADASTRO&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Abaixo está um modulo que usarei para popular a minha tabela, mais detalhes <a href="https://pypi.python.org/pypi/RandomWords/0.1.5">aqui</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">random_words</span> <span class="kn">import</span> <span class="n">RandomWords</span>
+<span class="n">rw</span> <span class="o">=</span> <span class="n">RandomWords</span><span class="p">()</span>
+<span class="n">word</span> <span class="o">=</span> <span class="n">rw</span><span class="o">.</span><span class="n">random_word</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ampere
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Abaixo está um modulo que usarei para popular a minha tabela no campo de data, o que me ajudou foi <a href="https://pypi.python.org/pypi/RandomWords/0.1.5">essa</a> informação</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">random_date</span><span class="p">():</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">toordinal</span><span class="p">()</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">toordinal</span><span class="p">()</span>
+    <span class="n">random_day</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">fromordinal</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">random_day</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Populando-a-tabela-no-banco">Populando a tabela no banco<a class="anchor-link" href="#Populando-a-tabela-no-banco">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">ID</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">NOME</span> <span class="o">=</span> <span class="n">rw</span><span class="o">.</span><span class="n">random_word</span><span class="p">()</span>
+    <span class="n">NASCIMENTO</span> <span class="o">=</span> <span class="n">random_date</span><span class="p">()</span>
+    <span class="n">SALARIO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;insert into cadastro(ID,NOME,NASCIMENTO,SALARIO)&#39;</span> <span class="o">+</span> \
+                    <span class="s">&#39;values(?,?,?,?)&#39;</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="n">NOME</span><span class="p">,</span><span class="n">NASCIMENTO</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">SALARIO</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">dados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">Sql_1</span><span class="p">,</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">dados</span><span class="p">[</span><span class="s">&#39;NOME&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1           committees
+5              handler
+4              harmony
+0                hoops
+6                 jump
+7                loads
+9             manpower
+2    nonavailabilities
+8           submission
+3             surfaces
+Name: NOME, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">Sql_1</span><span class="p">,</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>NOME</th>
+      <th>NASCIMENTO</th>
+      <th>SALARIO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>hoops</td>
+      <td>2016-06-23</td>
+      <td>708</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>committees</td>
+      <td>2016-04-25</td>
+      <td>919</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>nonavailabilities</td>
+      <td>2016-07-30</td>
+      <td>529</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>surfaces</td>
+      <td>2016-05-22</td>
+      <td>630</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>harmony</td>
+      <td>2016-04-05</td>
+      <td>473</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>handler</td>
+      <td>2016-06-07</td>
+      <td>880</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>jump</td>
+      <td>2016-03-10</td>
+      <td>148</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>loads</td>
+      <td>2016-05-28</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>submission</td>
+      <td>2016-01-13</td>
+      <td>323</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>manpower</td>
+      <td>2016-06-03</td>
+      <td>602</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>10</td>
+      <td>delays</td>
+      <td>2016-03-11</td>
+      <td>376</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11</td>
+      <td>pears</td>
+      <td>2016-06-17</td>
+      <td>770</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12</td>
+      <td>show</td>
+      <td>2016-07-17</td>
+      <td>66</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>13</td>
+      <td>passes</td>
+      <td>2016-06-06</td>
+      <td>952</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>14</td>
+      <td>strikes</td>
+      <td>2016-03-26</td>
+      <td>863</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>15</td>
+      <td>court</td>
+      <td>2016-04-05</td>
+      <td>274</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>16</td>
+      <td>alkalinity</td>
+      <td>2016-10-17</td>
+      <td>511</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>17</td>
+      <td>act</td>
+      <td>2016-08-10</td>
+      <td>590</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>18</td>
+      <td>altitude</td>
+      <td>2016-08-05</td>
+      <td>597</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>19</td>
+      <td>airspeed</td>
+      <td>2016-10-31</td>
+      <td>278</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>20</td>
+      <td>selves</td>
+      <td>2016-04-27</td>
+      <td>845</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>21</td>
+      <td>pane</td>
+      <td>2016-05-06</td>
+      <td>305</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>22</td>
+      <td>mitt</td>
+      <td>2016-02-05</td>
+      <td>254</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>23</td>
+      <td>solvent</td>
+      <td>2016-05-31</td>
+      <td>790</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>24</td>
+      <td>probe</td>
+      <td>2016-03-13</td>
+      <td>746</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>25</td>
+      <td>insignias</td>
+      <td>2016-06-23</td>
+      <td>496</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>26</td>
+      <td>seeds</td>
+      <td>2016-11-22</td>
+      <td>642</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>27</td>
+      <td>precautions</td>
+      <td>2016-04-24</td>
+      <td>382</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>28</td>
+      <td>buffers</td>
+      <td>2016-11-26</td>
+      <td>609</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>29</td>
+      <td>nose</td>
+      <td>2016-06-26</td>
+      <td>512</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3970</th>
+      <td>970</td>
+      <td>accounting</td>
+      <td>2016-04-03</td>
+      <td>365</td>
+    </tr>
+    <tr>
+      <th>3971</th>
+      <td>971</td>
+      <td>diagnoses</td>
+      <td>2016-06-01</td>
+      <td>741</td>
+    </tr>
+    <tr>
+      <th>3972</th>
+      <td>972</td>
+      <td>runouts</td>
+      <td>2016-01-19</td>
+      <td>127</td>
+    </tr>
+    <tr>
+      <th>3973</th>
+      <td>973</td>
+      <td>visibility</td>
+      <td>2016-03-05</td>
+      <td>462</td>
+    </tr>
+    <tr>
+      <th>3974</th>
+      <td>974</td>
+      <td>commands</td>
+      <td>2016-06-11</td>
+      <td>727</td>
+    </tr>
+    <tr>
+      <th>3975</th>
+      <td>975</td>
+      <td>hints</td>
+      <td>2016-08-06</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>3976</th>
+      <td>976</td>
+      <td>studies</td>
+      <td>2016-09-23</td>
+      <td>864</td>
+    </tr>
+    <tr>
+      <th>3977</th>
+      <td>977</td>
+      <td>honors</td>
+      <td>2016-07-24</td>
+      <td>743</td>
+    </tr>
+    <tr>
+      <th>3978</th>
+      <td>978</td>
+      <td>objective</td>
+      <td>2016-06-10</td>
+      <td>192</td>
+    </tr>
+    <tr>
+      <th>3979</th>
+      <td>979</td>
+      <td>pleasure</td>
+      <td>2016-02-17</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <th>3980</th>
+      <td>980</td>
+      <td>octobers</td>
+      <td>2016-03-27</td>
+      <td>930</td>
+    </tr>
+    <tr>
+      <th>3981</th>
+      <td>981</td>
+      <td>cheeks</td>
+      <td>2016-04-13</td>
+      <td>960</td>
+    </tr>
+    <tr>
+      <th>3982</th>
+      <td>982</td>
+      <td>catch</td>
+      <td>2016-02-02</td>
+      <td>808</td>
+    </tr>
+    <tr>
+      <th>3983</th>
+      <td>983</td>
+      <td>diaries</td>
+      <td>2016-10-11</td>
+      <td>550</td>
+    </tr>
+    <tr>
+      <th>3984</th>
+      <td>984</td>
+      <td>yards</td>
+      <td>2016-11-25</td>
+      <td>325</td>
+    </tr>
+    <tr>
+      <th>3985</th>
+      <td>985</td>
+      <td>substitutes</td>
+      <td>2016-10-02</td>
+      <td>936</td>
+    </tr>
+    <tr>
+      <th>3986</th>
+      <td>986</td>
+      <td>periods</td>
+      <td>2016-01-18</td>
+      <td>974</td>
+    </tr>
+    <tr>
+      <th>3987</th>
+      <td>987</td>
+      <td>beacon</td>
+      <td>2016-05-30</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>3988</th>
+      <td>988</td>
+      <td>setup</td>
+      <td>2016-05-07</td>
+      <td>446</td>
+    </tr>
+    <tr>
+      <th>3989</th>
+      <td>989</td>
+      <td>tendencies</td>
+      <td>2016-11-04</td>
+      <td>325</td>
+    </tr>
+    <tr>
+      <th>3990</th>
+      <td>990</td>
+      <td>locomotive</td>
+      <td>2016-02-17</td>
+      <td>445</td>
+    </tr>
+    <tr>
+      <th>3991</th>
+      <td>991</td>
+      <td>heart</td>
+      <td>2016-01-30</td>
+      <td>718</td>
+    </tr>
+    <tr>
+      <th>3992</th>
+      <td>992</td>
+      <td>zones</td>
+      <td>2016-06-23</td>
+      <td>242</td>
+    </tr>
+    <tr>
+      <th>3993</th>
+      <td>993</td>
+      <td>lifeboat</td>
+      <td>2016-03-27</td>
+      <td>901</td>
+    </tr>
+    <tr>
+      <th>3994</th>
+      <td>994</td>
+      <td>retractor</td>
+      <td>2016-05-28</td>
+      <td>595</td>
+    </tr>
+    <tr>
+      <th>3995</th>
+      <td>995</td>
+      <td>guards</td>
+      <td>2016-07-15</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>3996</th>
+      <td>996</td>
+      <td>strand</td>
+      <td>2016-05-04</td>
+      <td>134</td>
+    </tr>
+    <tr>
+      <th>3997</th>
+      <td>997</td>
+      <td>history</td>
+      <td>2016-05-05</td>
+      <td>143</td>
+    </tr>
+    <tr>
+      <th>3998</th>
+      <td>998</td>
+      <td>chapter</td>
+      <td>2016-01-24</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>3999</th>
+      <td>999</td>
+      <td>elimination</td>
+      <td>2016-07-20</td>
+      <td>918</td>
+    </tr>
+  </tbody>
+</table>
+<p>4000 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">dados</span><span class="p">[[</span><span class="s">&#39;NOME&#39;</span><span class="p">,</span><span class="s">&#39;SALARIO&#39;</span><span class="p">]][:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">&#39;SALARIO&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NOME</th>
+      <th>SALARIO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>loads</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>jump</td>
+      <td>148</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>submission</td>
+      <td>323</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>harmony</td>
+      <td>473</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>nonavailabilities</td>
+      <td>529</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>manpower</td>
+      <td>602</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>surfaces</td>
+      <td>630</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>hoops</td>
+      <td>708</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>handler</td>
+      <td>880</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>committees</td>
+      <td>919</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.plot.html">Aqui</a> voce pode encontrar configurações para o seu grafico</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">teste</span> <span class="o">=</span> <span class="n">dados</span><span class="p">[[</span><span class="s">&#39;NOME&#39;</span><span class="p">,</span><span class="s">&#39;SALARIO&#39;</span><span class="p">]][:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">teste</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s">&#39;bar&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f74de8cfb50&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAg4AAAFfCAYAAAAmgUT2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAAPYQAAD2EBqD+naQAAIABJREFUeJzt3XuUXFWZ9/HvAzHE4CQMNCYCNsE3GBphgG4IeAEFdKGA
+eGOUOA1MkGFAbhMFUcQZLt5eHAwEQRFweUmnMUQximJEUAYBRRI0Cm18ucQyQjJWwBBomhCy3z/q
+BCud7s5O6OrqSr6ftWqtOmfv2vVU0aF+tWufcyKlhCRJUo6t6l2AJElqHAYHSZKUzeAgSZKyGRwk
+SVI2g4MkScpmcJAkSdkMDpIkKZvBQZIkZTM4SJKkbAYHSZKUbaODQ0QcHBHfj4i/RMSaiDimjz4X
+R8RjEdEdEbdGxMRe7dtExFURUY6IlRExJyJe2avPP0ZER0SsiIgnI+K6iNh241+iJEkaLJsy47At
+8Bvgw8B6F7qIiPOAM4BTgMnAM8C8iBhZ1e1y4CjgfcAhwE7Ad3oNNQtoAQ4v+h4CXLMJ9UqSpEES
+L+UiVxGxBnh3Sun7VfseA76QUppebI8BlgEnppRmF9t/BY5LKd1U9JkEdAEHpZTujYgW4AGgLaV0
+f9HnCOCHwC4ppaWbXLQkSdpkg7rGISJ2A8YDt63dl1J6CvgV8Ppi1/7AiF59FgGlqj4HAU+uDQ2F
+n1KZ4ThwMGuWJEn5Bntx5HgqH+7Leu1fVrQBjANWFYGivz7jgf+tbkwpvQA8UdVHkiQNsRH1LmCw
+RMQOwBHAYqCnvtVIktRQRgETgHkppeUDdRzs4LAUCCqzCtWzDuOA+6v6jIyIMb1mHcYVbWv79D7K
+Ymtg+6o+vR0BdLyk6iVJ2rL9C5WDE/o1qMEhpfRoRCylciTEQnhxceSBwFVFt/nA6qJP9eLIZuCe
+os89wHYRsV/VOofDqYSSX/Xz9IsBZs6cSUtLyyC+qopp06Yxffr0QR93KDRq7Y1aNzRu7Y1aNzRu
+7Y1aNzRu7Y1aN9Su9q6uLtrb26H4LB3IRgeH4lwKE6l8iAO8JiL2AZ5IKf2ZyqGWF0TEQ0UBlwBL
+gLlQWSwZEdcDX4yIJ4GVwAzgrpTSvUWfP0TEPODaiDgNGAlcCXQOcERFD0BLSwutra0b+7I2aOzY
+sTUZdyg0au2NWjc0bu2NWjc0bu2NWjc0bu2NWjcMSe0b/Kl/U2Yc9gd+RmURZAIuK/Z/AzgppXRp
+RIymcs6F7YA7gXeklFZVjTENeAGYA2wD/Bg4vdfzfBD4EpWjKdYUfc/ehHolSdIg2ejgkFK6gw0c
+jZFSuhC4cID254Azi1t/ff4GtG9sfZIkqXa8VoUkScpmcMg0ZcqUepewyRq19katGxq39katGxq3
+9katGxq39katG4ZH7S/plNPDSUS0AvPnz5/fsIteJGkwlUolyuVyvcvQMNHU1ERzc3OfbQsWLKCt
+rQ0ql3pYMNA4m80JoCRJf1cqlWhpaaG7u7vepWiYGD16NF1dXf2Gh1wGB0naDJXLZbq7u2t2bhs1
+lrXnaSiXywYHSVL/anVuG225XBwpSZKyGRwkSVI2g4MkScpmcJAkSdkMDpIkKZtHVUjSFma4nBhq
+oBMSbcjvfvc7LrroIu677z6WLVvGDjvswJ577skxxxzDGWecsU7fNWvWsMsuu7B06VJuueUWjjji
+iPXGu/DCC7n44ospl8tsv/32G3z+W265haOOOoqddtqJJUuW9NlnwoQJlEqlF7dHjx7Nnnvuyamn
+nspJJ520Tt877riDQw89lDlz5vDe9753nbYHH3yQz372s/z85z+nXC6zww47cOihh3L++eez5557
+brDWwWZwkKQtSKlUYtKkFnp66n9iqFGjRrNo0cafkOjuu+/msMMOY9ddd+WUU05h/Pjx/PnPf+aX
+v/wlM2bMWC843H777SxdupRtt92Wjo6OPoNDRBAR2TV0dHSw7bbb8vjjj3P77bdz2GGH9Tnmfvvt
+xznnnENKiccff5zrrruOk08+mWeffZbTTz99vf69ffe73+WDH/wgO+ywAx/60IfYbbfdWLx4Mddf
+fz1z5szh29/+Nu9617uy6x4MBgdJ2oKUy+UiNMwE6nliqC56ejbthESf+cxn2G677bjvvvv4h3/4
+h3Xa+ppJmTlzJhMmTKC9vZ3LL7+cZ599lpe//OWbXHl3dzdz587lIx/5CN/85jfp6OjoMzgA7Lzz
+zutcX+LEE0/kNa95DTNmzFgvOPS+BMQjjzzCCSecwMSJE/mf//mfdWZCzj77bN70pjdx/PHHs3Dh
+QiZMmLDJr2djGRwkaYvUAjTmiaEeeeQRXve6160XGqDy80e1np4ebrrpJs4++2yOP/54Pv3pTzN3
+7lyOO+64TX7+7373u3R3d3P88cezevVqrr76ar785S8zcuTIDT62qamJPfbYg9/97ncb7HvppZfy
+7LPP8tWvfnW9n0+23357rrnmGt785jdz6aWXcvXVV2/y69lYLo6UJDWUXXfdlfnz5/PAAw9ssO/c
+uXN5+umnaW9vZ/fdd+eAAw6go6PjJT3/rFmzmDx5MhMnTqS9vZ0VK1bwgx/8IOuxL7zwAkuWLGH8
++PEb7HvzzTczYcIE3vCGN/TZfvDBBzNhwgR++MMfblT9L5XBQZLUUM455xy6u7vZd999eeMb38jH
+P/5xbr31VlavXr1e346ODlpbW3nta18LQHt7Oz/5yU9Yvnz5Jj33X//6V376059y/PHHA5VTeu+3
+3379hpHnn3+e5cuXs3z5ch544AGmTp3KsmXL+PCHPzzg8zz11FM89thj7LPPPgP2+6d/+ieWLFnC
+M888s0mvZ1MYHCRJDeWtb30r99xzD+9617tYuHAhX/jCFzjiiCPYeeed1/nm/8QTTzBv3rwXP+QB
+jjvuOFJKzJ49e5Oeu7Ozk4jgAx/4wIv72tvbueWWW1ixYsV6/efNm8eOO+7IjjvuyN57782sWbO4
+9NJLOffccwd8npUrVwL0+XNMtbXtTz311Ma+lE1mcJAkNZy2tjbmzJnDk08+yb333sv555/P008/
+zT//8z/zhz/8AYAbbriB1atXs//++/Pwww/z8MMPs2LFCiZPnrzJP1d0dHQwefJk/va3v7045gEH
+HMBzzz3HjTfeuF7/gw46iNtuu4158+Zx2WWXMXbsWGbNmsVzzz034POsDQRrA0R/cgPGYHJxZAOq
+5THYL+W4akkaaiNGjKCtrY22tjZ23313pk6dyo033sinPvUpZs2aBcCb3vSmdR6z9rDHxYsXb9TR
+CA899BC//vWviQh233339cbs6Ojg5JNPXmd/U1MThx56KABve9vbmDRpEkcffTSf/exnueiii/p9
+rjFjxvCqV72KhQsXDljTwoUL2XnnnXnFK16R/TpeKoNDg6n1Mdibely1JNXb/vvvD8Djjz/O4sWL
+ufvuuznrrLM45JBD1um3Zs0a2tvbmTVrFueff372+DNnzmTkyJHMnDmTrbZad8L+zjvv5Morr2TJ
+kiXssssu/Y5x5JFH8uY3v5krrriCj370o4wZM6bfvkcffTTXXXcdd999d58LJO+8804WL17Maaed
+lv0aBoPBocHU9hjsTT+uWpKGys9//nPe8pa3rLf/hz/8IRHBpEmT6OjoICI499xz2Xnnndfre+21
+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
+RU5ErkJggg==
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
